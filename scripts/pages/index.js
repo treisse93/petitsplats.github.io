@@ -19,8 +19,6 @@ const fullArray = [ingredientsObject, appliancesObject, ustensilesObject];
 // Sélectionne éléments HTML du DOM
 
 
-
-
 /**
  * Fonction d'initialisation de l'application.
  */
