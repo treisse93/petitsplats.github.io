@@ -1,0 +1,250 @@
+/* Importation des polices Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Manrope&display=swap");
+@import url("./filter.css");
+@import url("./label.css");
+@import url("./recipe.css");
+
+html {
+  margin-bottom: 10rem;
+}
+
+/* Réinitialisation des marges, des paddings et de la boîte */
+*,
+::before,
+::after {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #1b1b1b;
+}
+
+/* Styles généraux du corps de la page */
+body {
+  font-family: "Manrope";
+  width: 100%;
+  background-color: #e5e5e5;
+  margin: auto;
+}
+
+header {
+  position: absolute;
+  background: transparent;
+  z-index: 1;
+}
+
+#siteName {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: start;
+  -webkit-box-align: end;
+  -ms-flex-align: end;
+  align-items: end;
+  margin-top: 51px;
+  margin-left: 69px;
+}
+
+#Logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background-color: #1b1b1b;
+  padding-left: 0.5rem;
+}
+
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+/* Styles des ellipses */
+#ellipseOut {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background-color: white;
+  margin-left: 0.5rem;
+  border-radius: 50%;
+  width: 1rem;
+  height: 1rem;
+}
+
+#ellipseIn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border: solid 1px black;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+}
+
+/* Styles du héros */
+#banner {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background-image: url("../assets/images/banner/lampos-aritonang-24gR_9lCdes-unsplash.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 500px;
+}
+
+/* Styles du message de bienvenue */
+#presentation {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background: transparent;
+  text-align: center;
+  width: 61.81%;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  font-size: 44px;
+  font-weight: 400;
+  color: #ffd15b;
+  font-family: "anton";
+}
+
+#labelSearch {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 66.25%;
+  background-color: white;
+  padding: 0.2rem;
+  border-radius: 7px;
+  margin-bottom: 1.25rem;
+}
+
+/* Styles de la zone de recherche */
+#bannerSearchInput {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  height: 100%;
+  width: 100%;
+  font-size: 0.9rem;
+  padding: 0.25rem 0.5rem;
+  border: none;
+  outline: none;
+}
+
+/* Styles du bouton de recherche */
+#bannerSearchButton {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border-radius: 15%;
+  border: 1px solid black;
+  width: 38px;
+  height: 38px;
+  background-color: #1b1b1b;
+}
+
+#bannerSearchButton #bannerSearchIcon::before {
+  color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border: none;
+  font-family: "Font Awesome 5 Free";
+  font-size: 1.25rem;
+}
+
+#bannerSearchButton:hover {
+  background-color: #ffd15b;
+}
+
+#bannerSearchButton:hover #bannerSearchIcon::before {
+  color: black;
+  font-weight: 800;
+}
+
+#bannerSearchButton:active {
+  border: 1px solid grey;
+}
+
+#labelsAndFiltersContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+#errorMsg {
+  margin: 0 auto;
+}

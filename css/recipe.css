@@ -1,0 +1,140 @@
+#recipesCardsContainer{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-right: 102px;
+    margin-left: 102px;
+  
+  }
+  
+  /* Styles du total des recettes */
+  #totalRecipes {
+    display:flex;
+    position:relative;
+    justify-content:center;
+    align-items:center;
+    margin:0.5rem;
+    font-family: "Anton";
+    font-size: 1.5rem;
+  }
+  
+  /* Styles des cartes de recettes */
+  .recipeCard {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    background-color: white;
+    border-radius: 15px;
+    height: 740px;
+    width: 32%;
+    margin-bottom: 1rem;
+  }
+  
+  .recipePictureContainer {
+    height:253px;
+    width:100%;
+    overflow:hidden;
+  
+  }
+  
+  .recipePicture{
+    height:100%;
+    width:100%;
+    object-fit:cover;
+    object-position:center;
+  }
+  
+  /* Styles du temps de cuisson */
+  .CookingTime {
+    position: absolute;
+    color:black;
+    font-weight:550;
+    right: 30px;
+    top: 30px;
+    background-color: #ffd15b;
+    border-radius: 25px;
+    padding: 10px 20px;
+  }
+  
+  .recipeContent{
+    padding: 1.5rem;
+    height:730px;
+    display:flex;
+    flex-direction:column;
+    justify-content:start;
+    align-items:start;
+    gap:1rem;
+  }
+  
+  
+  /* Styles du nom de la recette */
+  .recipeName {
+    font-family: "Anton";
+    margin-top:0.25rem;
+    margin-bottom:0.5rem;
+    font-size:1.5rem;
+  }
+  
+  /* Styles des titres de carte, des sous-titres de carte et des titres d'ingrédients */
+  .cardTitle,
+  .cardSubTitle {
+    margin:0;
+    text-transform: uppercase;
+    color: #7A7A7A;
+    font-weight: 700;
+    font-family: "Manrope";
+    font-size: 12px;
+  }
+  
+  /* Styles de la description de la recette */
+  .recipeDescription {
+    overflow: hidden;
+    white-space: pre-wrap;
+    
+    margin-left: 0.5rem;
+    font-family: "Manrope";
+    text-align: start;
+    height: 110px;
+    font-size: 0.85rem;
+  }
+  
+  .recipeIngredients{
+    display:flex;
+    flex-wrap:wrap;
+    width:100%;
+    height:100%;
+    justify-content:space-between; 
+    align-items:center;
+    font-size:0.85rem;
+    gap:0.5rem;
+    height:20%;
+  }
+  
+  .oneIngredientContainer{
+    display:flex;
+    flex-direction:column;
+    width:40%;
+    margin:0.25rem;
+  }
+  
+  /* Styles des mesures d'ingrédients */
+  .ingredientMesure,
+  .ingredientName {
+    font-family: "Manrope", "Sans-serif";
+    margin: 2px 0;
+    font-size: 0.8rem;
+  }
+  
+  /* Styles des noms d'ingrédients */
+  .ingredientName {
+    font-weight: 700;
+  }
+  
+  /* Styles des quantités */
+  .quantity {
+    font-size: 1rem;
+  }
+  
