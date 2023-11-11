@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Liens vers feuilles de style et scripts externes -->
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="https://kit.fontawesome.com/c6b75d90fa.js" crossorigin="anonymous"></script>
+    <!-- Titre de la page -->
+    <title>Les petits plats</title>
+</head>
+
+<body>
+    <!-- En-tête -->
+    <header>
+        <!-- Logo du site et icône ellipse -->
+        <a href="index.html" id="siteName">
+            <img id="logo" src="./assets/logo/Les_petits_plats.svg" alt="Logo: les petits plats">
+            <div id="ellipseOut">
+                <div id="ellipseIn"></div>
+            </div>
+        </a>
+
+    </header>
+
+    <main>
+        <section id="banner">
+            <!-- Titre d'accueil -->
+            <h2 id="presentation">
+                CHERCHEZ PARMI PLUS DE 1500 RECETTES DU QUOTIDIEN,SIMPLES ET DÉLICIEUSES</h2>
+
+            <!-- Barre de recherche -->
+            <div id="labelSearch">
+                <input type="text" id="bannerSearchInput" name="searchInput"
+                    placeholder="Rechercher une recette, un ingrédient...">
+
+                <button id="bannerSearchButton">
+                    <i id="mainSearchIcon" class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </div>
+        </section>
+        <!-- Section filtres et labels -->
+        <div id="labelsAndFiltersContainer">
+            <!-- Container des filtres -->
+            <div id="filtersContainer">
+                <!-- Filtres d'ingrédients, de matériel et d'ustensiles -->
+                <div id="filters">
+                    <div id="ingredientsFilter" class="filter">
+                        <!-- Bouton filtre d'ingrédients -->
+                        <div id="ingredients" class="filterBtn">
+                            <span class="filterBtnName">Ingrédients</span>
+                            <i class="fa-solid fa-chevron-down"></i>
+                            <!-- Liste des filtres d'ingrédients (masquée par défaut) -->
+                            <div id="ingredientsList" class="filterList hidden">
+                                <div class="inputFilterBtn ">
+                                    <input type="text" id="ingredientsSearchInput" class="filterInput ">
+                                    <button id="ingredientsSearchButton" class="searchInputButton ">
+                                        <i class="fa-solid fa-magnifying-glass filtersIcon"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="appliancesFilter" class="filter">
+                        <!-- Bouton filtre de matériel -->
+                        <div id="appliances" class="filterBtn ">
+                            <span class="filterBtnName">Appareils</span>
+                            <i class="fa-solid fa-chevron-down"></i>
+                            <!-- Liste des filtres de matériel (masquée par défaut) -->
+                            <div id="appliancesList" class="filterList hidden">
+                                <div class="inputFilterBtn">
+                                    <input type="text" id="appliancesSearchInput" class="filterInput ">
+                                    <button id="appliancesSearchButton" class="searchInputButton ">
+                                        <i class="fa-solid fa-magnifying-glass filtersIcon"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="ustensilsFilter" class="filter">
+                        <!-- Bouton filtre d'ustensiles -->
+                        <div id="ustensils" class="filterBtn ">
+                            <span class="filterBtnName">Ustensiles</span>
+                            <i class="fa-solid fa-chevron-down"></i>
+                            <!-- Liste des filtres d'ustensiles -->
+                            <div id="ustensilsList" class="filterList hidden">
+                                <div class="inputFilterBtn">
+                                    <input type="text" id="ustensilsSearchInput" class="filterInput">
+                                    <button id="ustensilsSearchButton" class="searchInputButton">
+                                        <i class="fa-solid fa-magnifying-glass filtersIcon"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Nombre total de recettes -->
+                <div id="totalRecipes">
+                    <span id="summer"></span>
+                </div>
+            </div>
+            <!-- Container des labels -->
+            <div id="labelsContainer"></div>
+        </div>
+
+        <!-- Container des cartes de recettes -->
+        <div id="recipesCardsContainer">
+            <!-- ... Affiche le contenu des cartes ... -->
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="./scripts/pages/index.js" type="module"></script>
+</body>
+
+</html>
