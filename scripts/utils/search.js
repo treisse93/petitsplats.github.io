@@ -1,108 +1,66 @@
 // recherche depuis la barre de recherche principale
 function SearchFromMain(ValueToSearch, recipes) {
-  const UpdatedRecipes = [];
-  for (let i = 0; i < recipes.length; i += 1) {
-    const recipe = recipes[i];
-    const { ingredients } = recipe;
-    const { name, description } = recipe;
-    const ElementsToCheck = [name, description];
-    for (let j = 0; j <= ingredients.length - 1; j += 1) {
-      const ingr = ingredients[j];
-      const { ingredient } = ingr;
-      ElementsToCheck.push(ingredient);
-    }
-    for (let k = 0; k < ElementsToCheck.length; k += 1) {
-      const element = ElementsToCheck[k];
-      const normalizedKeyword = Normalized(ValueToSearch);
-      const normalizedElement = Normalized(element);
-      if (
-        normalizedElement.match(normalizedKeyword) &&
-        !UpdatedRecipes.includes(recipe)
-      ) {
-        UpdatedRecipes.push(recipe);
+  return recipes.filter((recipe) => {
+    const { ingredients, name, description } = recipe;
+    const ToCheck = [
+      name,
+      description,
+      ...ingredients.map((ing) => ing.ingredient),
+    ];// affiche nom recette , description, ingrédients
+    return ToCheck.some((element) =>
+      Normalized(element).match(Normalized(ValueToSearch))
+    );
+      });
       }
-    }
-  }
-  return UpdatedRecipes;
-}
 
 // recherche depuis la barre de recherche du filtre ingredient
 function SearchFromIngredients(ValueToSearch, Actuals, recipes) {
-  const UpdatedRecipes = [];
-  for (let j = 0; j < recipes.length; j += 1) {
-    const recipe = recipes[j];
-    const { id: id1, ingredients } = recipe;
-    for (let ActualRecipe of Actuals) {
-      const { id: id2 } = ActualRecipe;
-      if (Number(id1) === Number(id2)) {
-        for (let k = 0; k < ingredients.length; k += 1) {
-          const ingr = ingredients[k];
-          const { ingredient } = ingr;
-          const normalizedKeyword = Normalized(ValueToSearch);
-          const normalizedElement = Normalized(ingredient);
-          if (normalizedElement === normalizedKeyword) {
-            if (!UpdatedRecipes.includes(recipe)) {
-              UpdatedRecipes.push(recipe);
-            }
-          }
-        }
-      }
+  const normalizedKeyword = Normalized(ValueToSearch);  
+  return recipes
+    .filter((recipe) =>
+      recipe.ingredients.some(
+        (ingr) => Normalized(ingr.ingredient) === normalizedKeyword
+      )
+    )
+    .filter((recipe) =>
+      Actuals.some((Recipe) => Number(Recipe.id) === Number(recipe.id))
+    );
     }
-  }
-  return UpdatedRecipes;
-}
     
+
 //recherche depuis la barre de recherche du filtre ustensiles
 function SearchFromUstensils(ValueToSearch, Actuals, recipes) {
-  const updatedArray = [];
   const normalizedKeyword = Normalized(ValueToSearch);
-  for (let ActualRecipe of Actuals) {
-    const { id: id1 } = ActualRecipe;
-    for (let recipe of recipes) {
-      const { id: id2, ustensils } = recipe;
-      if (Number(id1) === Number(id2)) {
-        for (let ustensil of ustensils) {
-          const normalizedElement = Normalized(ustensil);
-          console.log(normalizedElement);
-          console.log(normalizedKeyword);
-          if (normalizedElement === normalizedKeyword) {
-            if (!updatedArray.includes(recipe)) {
-              updatedArray.push(recipe);
-            }
-          }
-        }
-      }
-    }
-  }
-  return updatedArray;
+
+  return recipes
+    .filter((recipe) =>
+      recipe.ustensils.some(
+        (Ustensil) => Normalized(Ustensil) === normalizedKeyword
+      )
+    )
+    .filter((recipe) =>
+      Actuals.some((Recipe) => Number(Recipe.id) === Number(recipe.id))
+    );
+    
+
 }
 
 // recherche depuis la barre de recherche du filtre appareils
 function SearchFromAppliances(ValueToSearch, Actuals, recipes) {
-  const updatedArray = [];
   const normalizedKeyword = Normalized(ValueToSearch);
-  for (let ActualRecipe of Actuals) {
-    for (let recipe of recipes) {
-      const { id: id1, appliance } = recipe;
-      const { id: id2 } = ActualRecipe;
-      if (Number(id1) === Number(id2)) {
-        const normalizedElement = Normalized(appliance);
-        if (
-          normalizedElement === normalizedKeyword &&
-          !updatedArray.includes(recipe)
-        ) {
-          updatedArray.push(recipe);
-        }
-      }
-    }
-  }
-  return updatedArray;
+  return recipes
+    .filter((recipe) => Normalized(recipe.appliance) === normalizedKeyword)
+    .filter((recipe) =>
+      Actuals.some((Recipe) => Number(Recipe.id) === Number(recipe.id))
+    );
+    
 }
 
 //selection depuis la barre de recherche du filtre 
 function SearchFromFilter(ValueToSearch, filterZone, recipes) {
   const Actuals = Array.from(document.querySelectorAll(".recipeCard"));
   let UpdatedRecipes;
+
   if (filterZone === "ingredients") {
     UpdatedRecipes = SearchFromIngredients(ValueToSearch, Actuals, recipes);
   } else if (filterZone === "appliances") {
@@ -116,14 +74,14 @@ function SearchFromFilter(ValueToSearch, filterZone, recipes) {
 
 function SearchFromDeleteLabel(recipes) {
   // une fonction qui recuperes les labels et renvoi que les recettes qui contiennent l'ensemble des labels
-  const labelsNodeList = document.querySelectorAll(".labels");
+  const ActualsLabel = Array.from(document.querySelectorAll(".labels"));
   let iteration = 0;
   let updatedRecipes = recipes;
-  // Boucle for pour parcourir les labels
-  for (let i = 0; i < labelsNodeList.length; i++) {
-    const label = labelsNodeList[i];
+
+  ActualsLabel.forEach((label) => {
     const name = label.getAttribute("data-normalized");
     const type = label.getAttribute("data-type");
+
     if (type === "ingredients") {
       updatedRecipes = SearchFromIngredients(name, updatedRecipes, recipes);
       iteration += 1;
@@ -134,15 +92,17 @@ function SearchFromDeleteLabel(recipes) {
       updatedRecipes = SearchFromAppliances(name, updatedRecipes, recipes);
       iteration += 1;
     }
-  }
+  });
   return updatedRecipes;
 }
 
 function SearchListInput(filters, input) {
   // Fonction qui filtre les éléments de la liste des filtres
+
   if (input !== 0) {  
-    for (let filter of filters) {
+    for (const filter of filters) {
       const element = filter;
+   
       const normalizedElement = Normalized(element.textContent); // nom de l'élément du filtre
       const normalizedInput = Normalized(input); //valeur du champ input du filtre recherche
 console.log (normalizedElement);
