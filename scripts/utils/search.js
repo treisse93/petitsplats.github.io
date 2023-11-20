@@ -121,15 +121,21 @@ console.log(!normalizedElement.match(normalizedInput));
   }
 }
 
+
+
 // Fonction utilitaire pour normaliser les chaînes de caractères (enlever les accents et convertir en minuscules)
 function Normalized(str) {
-  return str
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replaceAll(" ", "")
-    .replace("'", "")
-    .toLowerCase()
-    .trim();
+  if (typeof str === 'string' || str instanceof String) {
+    return str
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replaceAll(" ", "")
+      .replace("'", "")
+      .toLowerCase()
+      .trim();
+  } else {
+    return ""; // Retourne une chaîne vide si la valeur n'est pas une chaîne de caractères
+  }
 }
 
 export {

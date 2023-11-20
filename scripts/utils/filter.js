@@ -17,6 +17,44 @@ const filterZones = document.querySelectorAll(".filterBtn");
 const mainInput = document.getElementById("bannerSearchButton");
 
 /** Classe Filter */
+
+
+filterZones.forEach((btn) => {
+  const input = btn.querySelector("input");
+  const list = btn.querySelector(".filterList");
+  
+  input.addEventListener("click", (e) => {
+    console.log(e.target.value);
+    e.stopPropagation();
+    input.focus();
+  });
+  
+  input.addEventListener("keyup", (event) => {
+    console.log(event.target.value); //valeur du champ input filtre
+    const filtersArray = Array.from(list.querySelectorAll(".filterOption"));
+    console.log(filtersArray); //liste de toutes les recettes possibles
+    SearchListInput(filtersArray, input.value);
+  });
+
+  btn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    const isActive = btn.classList.contains("active");
+    const allActiveFilters = document.querySelectorAll(".filter.active");
+  
+    if (!isActive) {
+      const btnID = btn.id.replace("Filter", "");
+      allActiveFilters.forEach((filter) => {
+        const filterID = filter.id.replace("Filter", "");
+        toggleList(filterID);
+      });
+    
+      toggleList(btnID);
+    } else {
+      toggleList(btn.id.replace("Filter", ""));
+    }
+  });
+});
+
 class Filter {
   constructor(name, type) {
     this.NAME = name;
@@ -61,7 +99,7 @@ class Filter {
 
     const UpdatedRecipes = SearchFromDeleteLabel(
       recipesArray,
-      Normalized(mainInput.value)
+      Normalized(mainInput.value)      
     );
     UpdateRecipes(UpdatedRecipes); // maj recettes
     UpdateFilters(UpdatedRecipes); //maj liste
@@ -88,8 +126,16 @@ class Filter {
       this.ISACTIVE = this.ELEMENT.classList.contains("active");
       if (!this.ISACTIVE) {
         this.SetActive();
+        document.querySelectorAll(".filterInput").forEach(filterInput => {
+          console.log(filterInput);
+          filterInput.value = "";
+          console.log(filterInput.value);
+        });
+              
       } else if (this.ISACTIVE && e.target.classList.contains("filter-Icon")) {
         this.SetInactive();
+       
+        
       }
     });
   }
@@ -107,9 +153,13 @@ class Filter {
     });
   }
 
-  RemoveLabel() { // enlève le label à gauche
+  RemoveLabel() {// enlève le label à gauche
     const labelToRemove = document.getElementById(this.LABELID);
-    labelToRemove.remove();
+    if (labelToRemove) {
+      labelToRemove.remove();
+    } else {
+      console.error("Label element not found or already removed.");
+    }
   }
 
   AddListener() { //ajoute un event
@@ -128,46 +178,6 @@ class Filter {
   }
 }
 
-filterZones.forEach((btn) => {
-  const input = btn.querySelector("input");
-  const list = btn.querySelector(".filterList");
-  input.addEventListener("click", (e) => {
-    e.stopPropagation();
-    input.focus();
-  });
-
-  input.addEventListener("keyup", (event) => {// paramétrer event
-    console.log (event.target.value); // affiche valeur recherchee
-    const filtersArray = Array.from(list.querySelectorAll(".filterOption"));
-    console.log (filtersArray); // affiche les filtres disponible (si vide, affiche tout) avec filterOption, d-flex si valeur recherchee
-    SearchListInput(filtersArray, input.value);
-
-  });
-
-  btn.addEventListener("click", (e) => {
-    e.stopPropagation();
-    // Vérifie: quand bouton cliqué est actif
-    const isActive = btn.classList.contains("active");
-    // Fermer: tous les filtres actifs
-    const allActiveFilters = document.querySelectorAll(".filter.active");
-    // Ouvre le bouton s'il n'est pas actif
-    if (!isActive) {
-      const btnID = btn.id.replace("Filter", ""); //bouton sélection (ingrédients, appareils ou ustensiles)
-      allActiveFilters.forEach((filter) => {
-        const filterID = filter.id.replace("Filter", "");
-        toggleList(filterID);
-      });
-      toggleList(btnID);
-    } else {
-      // Ferme le bouton s'il est actif 
-      toggleList(btn.id.replace("Filter", ""));
-      
-      // vider l'input quand click
-    }
-  });
-});
-
-
 document.querySelector("html").addEventListener("click", (e) => {
   const activeFilter = document.querySelector(".filter.active");
   const activeBtnID = activeFilter?.id.replace("Filter", ""); //affiche catégorie (ign, ust, app) du label 
@@ -185,7 +195,7 @@ document.querySelector("html").addEventListener("click", (e) => {
 
 function SearchAndUpdate(name, type, recipes) {
   UpdateRecipes(SearchFromFilter(name, type, recipes)); // maj recettes
- // UpdateFilters(SearchFromFilter(name, type, recipes)); // maj onglet filtre (filtre actif seulement)
+ UpdateFilters(SearchFromFilter(name, type, recipes)); // maj onglet filtre (filtre actif seulement)
   RestoreActive(); 
 }
 
