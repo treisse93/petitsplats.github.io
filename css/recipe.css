@@ -8,6 +8,10 @@
     margin-left: 102px;
   
   }
+
+  #recipesCardsContainer span{
+font-weight: 700;
+  }
   
   /* Styles du total des recettes */
   #totalRecipes {
