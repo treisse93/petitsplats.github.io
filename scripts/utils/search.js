@@ -45,7 +45,7 @@ function searchFromIngredients(ValueToSearch, Actuals, recipes) {
   for (let j = 0; j < recipes.length; j += 1) {
     const recipe = recipes[j];
     const {id: id1, ingredients} = recipe;
-    for (let ActualRecipe of Actuals) {
+    for (const ActualRecipe of Actuals) {
       const {id: id2} = ActualRecipe;
       if (Number(id1) === Number(id2)) {
         for (let k = 0; k < ingredients.length; k += 1) {
@@ -76,13 +76,13 @@ function searchFromIngredients(ValueToSearch, Actuals, recipes) {
  */
 function searchFromUstensils(ValueToSearch, Actuals, recipes) {
   const updatedArray = [];
-  const normalizedKeyword = Normalized(ValueToSearch);
-  for (let ActualRecipe of Actuals) {
+  const normalizedKeyword = normalized(ValueToSearch);
+  for (const ActualRecipe of Actuals) {
     const {id: id1} = ActualRecipe;
-    for (let recipe of recipes) {
+    for (const recipe of recipes) {
       const {id: id2, ustensils} = recipe;
       if (Number(id1) === Number(id2)) {
-        for (let ustensil of ustensils) {
+        for (const ustensil of ustensils) {
           const normalizedElement = normalized(ustensil);
           console.log(normalizedElement);
           console.log(normalizedKeyword);
@@ -109,8 +109,8 @@ function searchFromUstensils(ValueToSearch, Actuals, recipes) {
 function searchFromAppliances(ValueToSearch, Actuals, recipes) {
   const updatedArray = [];
   const normalizedKeyword = normalized(ValueToSearch);
-  for (let ActualRecipe of Actuals) {
-    for (let recipe of recipes) {
+  for (const ActualRecipe of Actuals) {
+    for (const recipe of recipes) {
       const {id: id1, appliance} = recipe;
       const {id: id2} = ActualRecipe;
       if (Number(id1) === Number(id2)) {
@@ -156,8 +156,9 @@ function searchFromFilter(ValueToSearch, filterZone, recipes) {
  * @return {string}
  */
 function searchFromDeleteLabel(recipes) {
-  // une fonction qui recuperes les labels et renvoi que les recettes qui contiennent l'ensemble des labels
-  const labelsNodeList = document.querySelectorAll(".labels");
+  // une fonction qui recuperes les labels
+  // et renvoi que les recettes qui contiennent l'ensemble des labels
+  const labelsNodeList = document.querySelectorAll('.labels');
   let iteration = 0;
   let updatedRecipes = recipes;
   // Boucle for pour parcourir les labels
