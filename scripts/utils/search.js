@@ -6,17 +6,30 @@
  * @return {string}
  */
 function searchFromMain(ValueToSearch, recipes) {
-  return recipes.filter((recipe) => {
-    const {ingredients, name, description} = recipe;
-    const ToCheck = [
-      name,
-      description,
-      ...ingredients.map((ing) => ing.ingredient),
-    ];// affiche nom recette , description, ingrédients
-    return ToCheck.some((element) =>
-      normalized(element).match(normalized(ValueToSearch)),
-    );
-  });
+  const UpdatedRecipes = [];
+  for (let i = 0; i < recipes.length; i += 1) {
+    const recipe = recipes[i];
+    const {ingredients} = recipe;
+    const {name, description} = recipe;
+    const ElementsToCheck = [name, description];
+    for (let j = 0; j <= ingredients.length - 1; j += 1) {
+      const ingr = ingredients[j];
+      const {ingredient} = ingr;
+      ElementsToCheck.push(ingredient);
+    }
+    for (let k = 0; k < ElementsToCheck.length; k += 1) {
+      const element = ElementsToCheck[k];
+      const normalizedKeyword = normalized(ValueToSearch);
+      const normalizedElement = normalized(element);
+      if (
+        normalizedElement.match(normalizedKeyword) &&
+        !UpdatedRecipes.includes(recipe)
+      ) {
+        UpdatedRecipes.push(recipe);
+      }
+    }
+  }
+  return UpdatedRecipes;
 }
 
 // recherche depuis la barre de recherche du filtre ingredient
@@ -28,16 +41,28 @@ function searchFromMain(ValueToSearch, recipes) {
  * @return {string}
  */
 function searchFromIngredients(ValueToSearch, Actuals, recipes) {
-  const normalizedKeyword = normalized(ValueToSearch);
-  return recipes
-      .filter((recipe) =>
-        recipe.ingredients.some(
-            (ingr) => normalized(ingr.ingredient) === normalizedKeyword,
-        ),
-      )
-      .filter((recipe) =>
-        Actuals.some((Recipe) => Number(Recipe.id) === Number(recipe.id)),
-      );
+  const UpdatedRecipes = [];
+  for (let j = 0; j < recipes.length; j += 1) {
+    const recipe = recipes[j];
+    const {id: id1, ingredients} = recipe;
+    for (let ActualRecipe of Actuals) {
+      const {id: id2} = ActualRecipe;
+      if (Number(id1) === Number(id2)) {
+        for (let k = 0; k < ingredients.length; k += 1) {
+          const ingr = ingredients[k];
+          const {ingredient} = ingr;
+          const normalizedKeyword = normalized(ValueToSearch);
+          const normalizedElement = normalized(ingredient);
+          if (normalizedElement === normalizedKeyword) {
+            if (!UpdatedRecipes.includes(recipe)) {
+              UpdatedRecipes.push(recipe);
+            }
+          }
+        }
+      }
+    }
+  }
+  return UpdatedRecipes;
 }
 
 
@@ -50,17 +75,27 @@ function searchFromIngredients(ValueToSearch, Actuals, recipes) {
  * @return {string}
  */
 function searchFromUstensils(ValueToSearch, Actuals, recipes) {
-  const normalizedKeyword = normalized(ValueToSearch);
-
-  return recipes
-      .filter((recipe) =>
-        recipe.ustensils.some(
-            (Ustensil) => normalized(Ustensil) === normalizedKeyword,
-        ),
-      )
-      .filter((recipe) =>
-        Actuals.some((Recipe) => Number(Recipe.id) === Number(recipe.id)),
-      );
+  const updatedArray = [];
+  const normalizedKeyword = Normalized(ValueToSearch);
+  for (let ActualRecipe of Actuals) {
+    const {id: id1} = ActualRecipe;
+    for (let recipe of recipes) {
+      const {id: id2, ustensils} = recipe;
+      if (Number(id1) === Number(id2)) {
+        for (let ustensil of ustensils) {
+          const normalizedElement = normalized(ustensil);
+          console.log(normalizedElement);
+          console.log(normalizedKeyword);
+          if (normalizedElement === normalizedKeyword) {
+            if (!updatedArray.includes(recipe)) {
+              updatedArray.push(recipe);
+            }
+          }
+        }
+      }
+    }
+  }
+  return updatedArray;
 }
 
 // recherche depuis la barre de recherche du filtre appareils
@@ -72,12 +107,24 @@ function searchFromUstensils(ValueToSearch, Actuals, recipes) {
  * @return {string}
  */
 function searchFromAppliances(ValueToSearch, Actuals, recipes) {
+  const updatedArray = [];
   const normalizedKeyword = normalized(ValueToSearch);
-  return recipes
-      .filter((recipe) => normalized(recipe.appliance) === normalizedKeyword)
-      .filter((recipe) =>
-        Actuals.some((Recipe) => Number(Recipe.id) === Number(recipe.id)),
-      );
+  for (let ActualRecipe of Actuals) {
+    for (let recipe of recipes) {
+      const {id: id1, appliance} = recipe;
+      const {id: id2} = ActualRecipe;
+      if (Number(id1) === Number(id2)) {
+        const normalizedElement = normalized(appliance);
+        if (
+          normalizedElement === normalizedKeyword &&
+          !updatedArray.includes(recipe)
+        ) {
+          updatedArray.push(recipe);
+        }
+      }
+    }
+  }
+  return updatedArray;
 }
 
 // selection depuis la barre de recherche du filtre
@@ -109,16 +156,15 @@ function searchFromFilter(ValueToSearch, filterZone, recipes) {
  * @return {string}
  */
 function searchFromDeleteLabel(recipes) {
-  // une fonction qui recuperes les labels et
-  // renvoi que les recettes qui contiennent l'ensemble des labels
-  const ActualsLabel = Array.from(document.querySelectorAll('.labels'));
-  // let iteration = 0;
+  // une fonction qui recuperes les labels et renvoi que les recettes qui contiennent l'ensemble des labels
+  const labelsNodeList = document.querySelectorAll(".labels");
+  let iteration = 0;
   let updatedRecipes = recipes;
-
-  ActualsLabel.forEach((label) => {
+  // Boucle for pour parcourir les labels
+  for (let i = 0; i < labelsNodeList.length; i++) {
+    const label = labelsNodeList[i];
     const name = label.getAttribute('data-normalized');
     const type = label.getAttribute('data-type');
-
     if (type === 'ingredients') {
       updatedRecipes = searchFromIngredients(name, updatedRecipes, recipes);
       iteration += 1;
@@ -129,7 +175,7 @@ function searchFromDeleteLabel(recipes) {
       updatedRecipes = searchFromAppliances(name, updatedRecipes, recipes);
       iteration += 1;
     }
-  });
+  }
   return updatedRecipes;
 }
 

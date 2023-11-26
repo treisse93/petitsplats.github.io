@@ -106,7 +106,7 @@ class Filter {
     this.ELEMENT.classList.add('active');
 
     this.addLabel();
-    aearchAndUpdate(this.NAME, this.TYPE, recipesArray);
+    searchAndUpdate(this.NAME, this.TYPE, recipesArray);
   }
 
   /**
