@@ -168,12 +168,11 @@ class Recipe {
 
       recipeContent.appendChild(ingredientsList);
 
-      const ingredientQuantity = this.INGREDIENTS[i].quantity
-        ? this.INGREDIENTS[i].quantity
-        : '';
-      const ingredientUnit = this.INGREDIENTS[i].unit
-        ? this.INGREDIENTS[i].unit
-        : '';
+      const ingredientQuantity = this.INGREDIENTS[i].quantity ?
+        this.INGREDIENTS[i].quantity : '';
+      const ingredientUnit = this.INGREDIENTS[i].unit ?
+        this.INGREDIENTS[i].unit :
+        '';
 
       const ingredientMesure = `${ingredientQuantity} ${ingredientUnit}`;
       const ingredientMesureElement = document.createElement('p');
