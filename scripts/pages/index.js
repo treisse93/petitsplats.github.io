@@ -18,13 +18,12 @@ const fullArray = [ingredientsObject, appliancesObject, ustensilesObject];
 
 // Sélectionne éléments HTML du DOM
 
-
 /**
+ * recherche dans la barre principale
  * Fonction d'initialisation de l'application.
- *
  */
-// recherche dans la barre principale
 function init() {
+  // void: renvoie que la fonction est vide
   const mainInput = document.getElementById('bannerSearchInput');
   displayRecipes(recipesArray);
   // Affiche toutes les recettes au chargement de la page
