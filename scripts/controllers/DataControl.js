@@ -1,4 +1,4 @@
-const DataRecipes = './Data/recipes.json';
+const DataRecipes = '../../Data/recipes.json';
 
 /**
  * Récupère données du fichier JSON.
