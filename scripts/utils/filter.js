@@ -259,7 +259,6 @@ function restoreActive() {
 
       for (const CurrentFilter of CurrentFilters) {
         const NormalizedFilter = CurrentFilter.getAttribute('data-normalized');
-        const RAWNAME = CurrentFilter.getAttribute('data-name');
 
         if (NormalizedLabel === NormalizedFilter) {
           CurrentFilter.classList.add('active');

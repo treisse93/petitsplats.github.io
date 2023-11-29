@@ -163,7 +163,7 @@ function searchListInput(filters, input) {
 // (enlever les accents et convertir en minuscules)
 /**
  *
- * @param {str}
+ * @param {string} str
  * @return {string}
  */
 function normalized(str) {

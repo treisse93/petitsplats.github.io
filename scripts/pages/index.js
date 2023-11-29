@@ -21,9 +21,8 @@ const fullArray = [ingredientsObject, appliancesObject, ustensilesObject];
 
 /**
  * Fonction d'initialisation de l'application.
- *
+ * recherche dans la barre principale
  */
-// recherche dans la barre principale
 function init() {
   const mainInput = document.getElementById('bannerSearchInput');
   displayRecipes(recipesArray);
