@@ -1,7 +1,7 @@
 [
-    {
-        "id": 1,
-        "image": "Recette01.jpg",
+  {
+    "id": 1,
+    "image": "Recette01.jpg",
         "name" : "Limonade de Coco",
         "servings" : 1,
         "ingredients": [
@@ -99,13 +99,13 @@
                 "quantity": 1
             },
             {
-                "ingredient": "Huile d'olive",
+                "ingredient": "Huile d\"olive",
                 "quantity": 1,
                "unit": "cuillères à soupe"
             }
         ],
         "time": 80,
-        "description": "Découper le poulet en morceaux, les faire dorer dans une cocotte avec de l'huile d'olive. Salez et poivrez. Une fois doré, laisser cuire en ajoutant de l'eau. Au bout de 30 minutes, ajouter le coulis de tomate, le lait de coco ainsi que le poivron et l'oignon découpés en morceaux. Laisser cuisiner 30 minutes de plus. Servir avec du riz",
+        "description": "Découper le poulet en morceaux, les faire dorer dans une cocotte avec de l\"huile d\"olive. Salez et poivrez. Une fois doré, laisser cuire en ajoutant de l\"eau. Au bout de 30 minutes, ajouter le coulis de tomate, le lait de coco ainsi que le poivron et l\"oignon découpés en morceaux. Laisser cuisiner 30 minutes de plus. Servir avec du riz",
         "appliance": "Cocotte",
         "ustensils": ["couteau"]
     },{
@@ -223,7 +223,7 @@
             }
         ],
         "time": 50,
-        "description": "Commencez par mélanger les oeufs le sucre et le sucre vanillé dans un saladier, découper les pommes en tranches, ajouter la crème fraîche aux oeufs. Une fois que tout est pret, étalez la tarte dans le moule. N'oubliez pas de piquer le fond avec une fourchette avant de positionner les pommes sur la tarte. Finalement verser la préparation à base d'oeufs et de crème fraîche. Laisser cuire au four pendant 30 minutes",
+        "description": "Commencez par mélanger les oeufs le sucre et le sucre vanillé dans un saladier, découper les pommes en tranches, ajouter la crème fraîche aux oeufs. Une fois que tout est pret, étalez la tarte dans le moule. N\"oubliez pas de piquer le fond avec une fourchette avant de positionner les pommes sur la tarte. Finalement verser la préparation à base d\"oeufs et de crème fraîche. Laisser cuire au four pendant 30 minutes",
         "appliance": "Four",
         "ustensils": ["moule à tarte", "saladier", "fourchette"]
     },{
