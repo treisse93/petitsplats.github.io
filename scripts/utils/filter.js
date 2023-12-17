@@ -106,7 +106,7 @@ class Filter {
     this.ELEMENT.classList.add('active');
 
     this.addLabel();
-    aearchAndUpdate(this.NAME, this.TYPE, recipesArray);
+    searchAndUpdate(this.NAME, this.TYPE, recipesArray);
   }
 
   /**
@@ -154,7 +154,7 @@ class Filter {
       e.stopPropagation();
       this.ISACTIVE = this.ELEMENT.classList.contains('active');
       if (!this.ISACTIVE) {
-        this.seActive();
+        this.setActive();
         document.querySelectorAll('.filterInput').forEach((filterInput) => {
           console.log(filterInput);
           filterInput.value = '';
@@ -171,8 +171,8 @@ class Filter {
    */
   addLabel() { // ajoute label à gauche
     const labelToAdd = new Label(this.NAME, this.TYPE);
-    labelToAdd.setLabel();
-    labelToAdd.mount();
+    labelToAdd.SetLabel();
+    labelToAdd.Mount();
 
     const LabelIcon = labelToAdd.ELEMENT.querySelector('.label-Icon');
 
