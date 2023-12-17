@@ -1,5 +1,5 @@
 // import {DataRecipes} from '../../Data/recipes';
-const DataRecipes = '../../Data/recipes';
+const DataRecipes = '../../Data/recipes.json';
 /**
  * Récupère données du fichier JSON.
  * @return {Promise<Object>} Les données JSON.
